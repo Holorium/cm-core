@@ -12,7 +12,16 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
     },
     module: {
-        rules: [{ // basic js loaders
+        rules: [{ // .vue loader including scss and sass
+            test: /\.vue$/,
+            loader: 'vue-loader',
+            options: {
+                loaders: {
+                    'scss': 'vue-style-loader!css-loader!sass-loader',
+                    'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+                }
+            }
+          }, { // basic js loaders
             test: /\.js$/,
             exclude: /node_modules/,
             use: [
