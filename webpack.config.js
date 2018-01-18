@@ -53,6 +53,8 @@ module.exports = {
             jQuery: 'jquery',
             'window.$': 'jquery',
             'window.jQuery': 'jquery',
+            '_': 'underscore',
+            'window._': 'underscore',
         })
     ],
     resolve: {

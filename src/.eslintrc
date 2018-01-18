@@ -5,11 +5,16 @@
 
     "env": {
         "browser": true,
-        "commonjs": true
+        "commonjs": true,
+        "jquery": true
     },
 
     "parserOptions": {
-        "sourceType": "module",
+        "sourceType": "module"
+    },
+
+    "globals": {
+        "_": true
     },
 
     "rules": {
