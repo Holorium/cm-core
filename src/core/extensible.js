@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Queue from './queue';
+import Queue from '@/core/queue';
 
 const View = Vue.component('extensible', {
     render: function (createElement) {

@@ -1,11 +1,18 @@
-var webpack = require('webpack'),
-    path = require('path');
+const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     entry: {
-        app: ['./index.js'],
-        vendor: ['font-awesome-webpack', 'vue'],
+        app: ['@/index.js'],
+        vendor: [
+            'font-awesome-webpack',
+            'materialize-css',
+            'materialize-css/dist/css/materialize.min.css',
+            'jquery',
+            'underscore',
+            'vue'
+        ],
     },
     output: {
         filename: '[name].bundle.js',
@@ -60,6 +67,7 @@ module.exports = {
     resolve: {
         alias: {
           'vue$': 'vue/dist/vue.esm.js',
+          '@': path.resolve(__dirname, 'src')
         }
     }
 };

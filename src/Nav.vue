@@ -12,13 +12,20 @@
 </template>
 
 <script>
-    import ext from './core/extensible';
+    import ext from '@/core/extensible';
 
     ext.queues('core/nav').add({
-        id: 'first-list',
+        id: 'first-link',
         index: 100,
         render: function (createElement) {
-            return createElement('li', [createElement('a', { attrs: { href: '#' } }, 'A link')]);
+            return createElement('li', [createElement('a', {
+                attrs: { href: '#' },
+                on: {
+                    click: function () {
+                        console.log('Clicked on first link');
+                    },
+                }
+            }, 'First link')]);
         }
     });
 
@@ -29,7 +36,9 @@
         },
         components: {
             Extensible: ext.View
-        }
+        },
+        methods: {
+  }
     }
 </script>
 
