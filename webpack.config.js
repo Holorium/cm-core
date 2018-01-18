@@ -4,8 +4,8 @@ var webpack = require('webpack'),
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     entry: {
-        app: ['materialize-loader', './index.js'],
-        vendor: ['jquery', 'underscore', 'vue'],
+        app: ['./index.js'],
+        vendor: ['font-awesome-webpack', 'vue'],
     },
     output: {
         filename: '[name].bundle.js',
@@ -38,17 +38,26 @@ module.exports = {
         }, { // used for materialize fonts
             test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
             loader: 'file-loader'
+        }, { // load css
+            test: /\.css$/,
+            use: [ 'style-loader', 'css-loader' ]
         }],
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
             minChunks: Infinity,
+        }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.$': 'jquery',
+            'window.jQuery': 'jquery',
         })
     ],
     resolve: {
         alias: {
-          'vue$': 'vue/dist/vue.esm.js'
+          'vue$': 'vue/dist/vue.esm.js',
         }
     }
 };
