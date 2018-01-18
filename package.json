@@ -13,8 +13,12 @@
     "babel-loader": "^7.1.2",
     "eslint": "^4.15.0",
     "eslint-loader": "^1.9.0",
+    "file-loader": "^1.1.6",
     "jquery": "^3.2.1",
+    "materialize-css": "^0.100.2",
+    "materialize-loader": "^2.0.2",
     "underscore": "^1.8.3",
+    "url-loader": "^0.6.2",
     "vue": "^2.5.13",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.0"
