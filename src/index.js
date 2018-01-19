@@ -1,7 +1,10 @@
 import Vue from 'vue';
 import App from '@/App.vue';
+import loadPlugins from '@/core/plugins';
 
-new Vue({
-    el: '#app-container',
-    render: createElement => createElement(App),
+loadPlugins.always(function () {
+    new Vue({
+        el: '#app-container',
+        render: createElement => createElement(App),
+    });
 });
