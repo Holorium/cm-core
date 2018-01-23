@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
-const version = process.env.NODE_ENV === 'production' ? process.env.npm_package_version : '';
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const version = process.env.npm_package_version || '-development';
 
 const config = {
     context: path.resolve(__dirname, 'src'),
@@ -12,7 +13,8 @@ const config = {
             'materialize-css/dist/css/materialize.min.css',
             'jquery',
             'underscore',
-            'vue'
+            'vue',
+            'vue-router',
         ],
     },
     output: {
@@ -67,7 +69,16 @@ const config = {
             'window.jQuery': 'jquery',
             '_': 'underscore',
             'window._': 'underscore',
-        })
+        }),
+        // add version number to html file
+        new CopyWebpackPlugin([{
+            from: '../static',
+            to: '.',
+            transform: function (content) {
+                const str = content.toString();
+                return str.replace(/(src="[^"]*)(\.js")/g, '$1.' + version + '$2');
+            }
+        }])
     ],
     resolve: {
         alias: {
@@ -78,7 +89,6 @@ const config = {
 };
 
 if (process.env.NODE_ENV === 'production') {
-    const CopyWebpackPlugin = require('copy-webpack-plugin');
     const CleanWebpackPlugin = require('clean-webpack-plugin');
     const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
@@ -88,14 +98,6 @@ if (process.env.NODE_ENV === 'production') {
             NODE_ENV: '"production"'
         }
     }));
-    config.plugins.push(new CopyWebpackPlugin([{
-        from: '../static',
-        to: '.',
-        transform: function (content) {
-            const str = content.toString();
-            return str.replace(/(src="[^"]*)(\.js")/g, '$1.' + version + '$2');
-        }
-    }]));
     config.plugins.push(new CleanWebpackPlugin(['dist']));
     config.plugins.push(new UglifyJsPlugin());
 }

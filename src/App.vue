@@ -1,5 +1,8 @@
 <template>
-    <core-nav></core-nav>
+    <div>
+        <core-nav></core-nav>
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>

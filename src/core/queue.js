@@ -6,7 +6,7 @@ class Queue {
     add (obj) {
         if (!obj.id) throw new Error('Objects in a queue need to have an id');
         if (!obj.index) obj.index = 0;
-        this.items[obj.id] = _.extend(this.items[obj.id] || {}, obj);
+        this.items[obj.id] = _.extend({}, obj, this.items[obj.id]);
         return this;
     }
 

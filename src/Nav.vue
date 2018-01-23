@@ -29,6 +29,31 @@
         }
     });
 
+    ext.queues('core/nav').add({
+        id: 'same-link',
+        index: 200,
+        render: function (createElement) {
+            return createElement({
+                template: '<li><a v-on:click="onClick" ref="#">Same link</a></li>',
+                methods: {
+                    onClick: function () {
+                        console.log('Clicked on the same link');
+                    },
+                },
+            });
+        }
+    });
+
+    ext.queues('core/nav').add({
+        id: 'customize',
+        index: 10000000,
+        render: function (createElement) {
+            return createElement({
+                template: '<li><router-link to="/customize">Customize</router-link></li>'
+            });
+        }
+    });
+
     export default {
         name: 'core-nav',
         mounted: function () {
@@ -43,7 +68,11 @@
 </script>
 
 <style lang="scss">
-    nav .button-collapse i.fa {
-        font-size: 24px;
+    nav {
+        a.button-collapse i.fa {
+            font-size: 24px;
+        }.fa-cog {
+            line-height: 38px;
+        }
     }
 </style>
