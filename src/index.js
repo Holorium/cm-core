@@ -4,6 +4,8 @@ import App from '@/App.vue';
 import loadPlugins from '@/core/plugins';
 import ext from '@/core/extensible';
 
+import '@/perspectives/customize/main';
+
 Vue.use(VueRouter);
 
 loadPlugins.always(function () {

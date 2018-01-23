@@ -44,16 +44,6 @@
         }
     });
 
-    ext.queues('core/nav').add({
-        id: 'customize',
-        index: 10000000,
-        render: function (createElement) {
-            return createElement({
-                template: '<li><router-link to="/customize">Customize</router-link></li>'
-            });
-        }
-    });
-
     export default {
         name: 'core-nav',
         mounted: function () {
